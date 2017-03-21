@@ -8,8 +8,9 @@ class Competitions(Sequence):
     def __getitem__(self, index):
         return self.competitions[index]
 
-    def __init__(self, data):
+    def __init__(self, data, headers):
         self.data = data
+        self.headers = headers
         self.competitions = []
         self.process()
 

@@ -2,7 +2,8 @@ from soccerpy.modules.Fundamentals.fixtures import Fixtures, Fixture
 
 
 class FixturesSpecific:
-    def __init__(self, data):
+    def __init__(self, data, headers):
+        self.headers = headers
         self.fixture = Fixture(data['fixture'])
         self.head2head = Head2Head(data['head2head'])
 

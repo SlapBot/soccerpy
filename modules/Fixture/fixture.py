@@ -8,11 +8,11 @@ class Fixture(BaseModule):
         super(Fixture, self).__init__()
 
     def get(self, time_frame=None, league=None, raw=False):
-        data = self.r.request('fixtures', payload={"timeFrame": time_frame,
+        data, headers = self.r.request('fixtures', payload={"timeFrame": time_frame,
                                                    "league": league})
         if raw:
             return data
-        return FixturesAll(data)
+        return FixturesAll(data, headers)
 
     def get_by_time_frame(self, time_frame):
         return self.get(time_frame=time_frame)
@@ -24,9 +24,9 @@ class Fixture(BaseModule):
         return self.get(time_frame=time_frame, league=league_code)
 
     def get_specific(self, fixture_id, head2head=None):
-        data = self.r.request('fixture_specific', endpoint_format=fixture_id,
+        data, headers = self.r.request('fixture_specific', endpoint_format=fixture_id,
                               payload={"head2head": head2head})
-        return FixturesSpecific(data)
+        return FixturesSpecific(data, headers)
 
     def get_specific_with_head2head(self, fixture_id, head2head):
         return self.get_specific(fixture_id=fixture_id, head2head=head2head)

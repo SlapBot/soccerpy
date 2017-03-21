@@ -24,7 +24,7 @@ class Requester(EndpointManager):
         data = self.check_for_exceptions(self.r)
         if raw:
             return self.r
-        return data
+        return data, self.r.headers
 
     @staticmethod
     def check_for_exceptions(request):

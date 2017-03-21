@@ -1,7 +1,7 @@
 from collections.abc import Sequence
 
 
-class AllCompetitions(Sequence):
+class Competitions(Sequence):
     def __len__(self):
         return len(self.competitions)
 
@@ -15,10 +15,10 @@ class AllCompetitions(Sequence):
 
     def process(self):
         for competition in self.data:
-            self.competitions.append(Competitions(competition))
+            self.competitions.append(Competition(competition))
 
 
-class Competitions:
+class Competition:
     def __init__(self, competition):
         self.links = Links(competition['_links'])
         self.id = competition['id']

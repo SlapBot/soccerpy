@@ -1,4 +1,4 @@
-from soccerpy.modules.Competition.competition_teams import Team
+from soccerpy.modules.Fundamentals.teams import Team
 
 
 class TeamSpecific:

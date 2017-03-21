@@ -1,7 +1,7 @@
 from soccerpy.modules.Competition.competition_fixtures import CompetitionFixtures
 from soccerpy.modules.Competition.competition_league_table import CompetitionLeagueTable
 from soccerpy.modules.Competition.competition_teams import CompetitionTeams
-from soccerpy.modules.Competition.competitions_all import AllCompetitions
+from soccerpy.modules.Competition.competitions_all import Competitions
 from soccerpy.modules.base_module import BaseModule
 
 
@@ -13,7 +13,7 @@ class Competition(BaseModule):
         data = self.r.request('competitions', payload={"season": season})
         if raw:
             return data
-        return AllCompetitions(data)
+        return Competitions(data)
 
     def get_all(self):
         return self.get()
@@ -42,10 +42,10 @@ class Competition(BaseModule):
     def get_fixtures_by_matchday(self, competition_id, matchday):
         return self.get_fixtures(competition_id, matchday=matchday)
 
-    def get_fixtures_by_timeframe(self, competition_id, time_frame):
+    def get_fixtures_by_time_frame(self, competition_id, time_frame):
         return self.get_fixtures(competition_id, time_frame=time_frame)
 
-    def get_fixtures_by_matchday_and_timeframe(self, competition_id, matchday, time_frame):
+    def get_fixtures_by_matchday_and_time_frame(self, competition_id, matchday, time_frame):
         return self.get_fixtures(competition_id, matchday=matchday, time_frame=time_frame)
 
 

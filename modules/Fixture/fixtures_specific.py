@@ -1,4 +1,4 @@
-from soccerpy.modules.Competition.competition_fixtures import Fixture, Fixtures
+from soccerpy.modules.Fundamentals.fixtures import Fixtures, Fixture
 
 
 class FixturesSpecific:

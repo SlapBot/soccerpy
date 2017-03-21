@@ -12,12 +12,14 @@ class Requester(EndpointManager):
                         'X-Response-Control': self.response_format}
         self.r = object
 
-    def request(self, endpoint_name, endpoint_format=False, payload=None, raw=False):
+    def request(self, endpoint_name, endpoint_format=False, payload=None, raw=False, raw_url=None):
         if payload is None:
             payload = {}
         if endpoint_format:
             raw_url = self.endpoints[endpoint_name]
             url = raw_url.format(endpoint_format)
+        elif raw_url:
+            url = raw_url
         else:
             url = self.endpoints[endpoint_name]
         self.r = requests.get(url, headers=self.headers, params=payload)

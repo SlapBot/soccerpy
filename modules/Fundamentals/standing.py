@@ -1,3 +1,4 @@
+from soccerpy.modules.Fundamentals.links.team_links import TeamLinks
 from collections.abc import Sequence
 
 
@@ -14,8 +15,12 @@ class Standing(Sequence):
         self.process()
 
     def process(self):
-        for team in self.data:
-            self.teams.append(Team(team))
+        if isinstance(self.data, dict):
+            self.teams = self.data
+        else:
+            for team in self.data:
+                # noinspection PyUnresolvedReferences
+                self.teams.append(Team(team))
 
 
 class Team:
@@ -33,11 +38,7 @@ class Team:
         self.draws = team['draws']
         self.losses = team['losses']
         self.home = Location(team['home'])
-
-
-class TeamLinks:
-    def __init__(self, link):
-        self.team = link['team']['href']
+        self.away = Location(team['away'])
 
 
 class Location:

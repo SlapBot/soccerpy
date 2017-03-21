@@ -1,3 +1,4 @@
+from soccerpy.modules.Team.team import Team as Parent
 from collections.abc import Sequence
 
 
@@ -20,12 +21,23 @@ class Teams(Sequence):
 
 class Team:
     def __init__(self, team):
-        self.team_links = TeamLinks(team['_links'])
+        self.links = TeamLinks(team['_links'])
+        self.id = int(self.links.url.split("/")[-1])
         self.name = team['name']
         self.code = team['code']
         self.short_name = team['shortName']
         self.squad_market_value = team['squadMarketValue']
         self.crest_url = team['crestUrl']
+        self.parent = Parent()
+
+    def get(self):
+        return self.parent.get(self.id)
+
+    def fixtures(self):
+        return self.parent.get_fixtures(self.id, season=None, time_frame=None, venue=None)
+
+    def players(self):
+        return self.parent.get_players(self.id)
 
 
 class TeamLinks:

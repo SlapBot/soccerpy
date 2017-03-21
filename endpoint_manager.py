@@ -6,6 +6,7 @@ class EndpointManager:
     def get_endpoints(self):
         endpoints = {
             'competitions': self.base_url + '/v1/competitions/',
+            'competitions_specific': self.base_url + '/v1/competitions/{}',
             'competition_teams': self.base_url + '/v1/competitions/{}/teams',
             'competition_league_table': self.base_url + '/v1/competitions/{}/leagueTable',
             'competition_fixtures': self.base_url + '/v1/competitions/{}/fixtures',

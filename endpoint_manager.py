@@ -6,15 +6,14 @@ class EndpointManager:
     def get_endpoints(self):
         endpoints = {
             'competitions': self.base_url + '/v1/competitions/',
-            # 'all_competitions': self.base_url + '/v1/competitions/',
             'competition_teams': self.base_url + '/v1/competitions/{}/teams',
+            'competition_league_table': self.base_url + '/v1/competitions/{}/leagueTable',
             'competition_fixtures': self.base_url + '/v1/competitions/{}/fixtures',
-            'fixture': self.base_url + '/v1/fixtures/',
-            'all_fixtures': self.base_url + '/v1/fixtures/',
+            'fixtures': self.base_url + '/v1/fixtures/',
+            'fixture_specific': self.base_url + '/v1/fixtures/{}',
             'team': self.base_url + '/v1/teams/{}',
-            'team_players': self.base_url + '/v1/teams/{}/players',
             'team_fixtures': self.base_url + '/v1/teams/{}/fixtures/',
-            'league_table': self.base_url + '/v1/competitions/{}/leagueTable'
+            'team_players': self.base_url + '/v1/teams/{}/players',
         }
         return endpoints
 

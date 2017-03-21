@@ -9,10 +9,14 @@ class Requester(EndpointManager):
         self.headers = {'X-Auth-Token': self.API_KEY}
         self.r = object
 
-    def request(self, endpoint_name, payload=None, raw=False):
+    def request(self, endpoint_name, endpoint_format=False, payload=None, raw=False):
         if payload is None:
             payload = {}
-        url = self.endpoints[endpoint_name]
+        if endpoint_format:
+            raw_url = self.endpoints[endpoint_name]
+            url = raw_url.format(endpoint_format)
+        else:
+            url = self.endpoints[endpoint_name]
         self.r = requests.get(url, headers=self.headers, params=payload)
         if raw:
             return self.r

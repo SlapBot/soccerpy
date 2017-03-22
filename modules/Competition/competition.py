@@ -52,3 +52,26 @@ class Competition(BaseModule):
 
     def get_fixtures_by_matchday_and_time_frame(self, competition_id, matchday, time_frame):
         return self.get_fixtures(competition_id, matchday=matchday, time_frame=time_frame)
+
+    def explicit_search(self, competitions, query, searching_parameter="name"):
+        if searching_parameter.lower() == "name":
+            status = self.finder.search_for_competition_by_name(competitions, query=query)
+        else:
+            status = self.finder.search_for_competition_by_code(competitions, query=query)
+        if status:
+            return status
+        return "Not Found"
+
+    def search_by_name(self, query, competitions=None):
+        if competitions:
+            dataset = competitions
+        else:
+            dataset = self.get_all().competitions
+        return self.explicit_search(dataset, query=query, searching_parameter="name")
+
+    def search_by_code(self, query, competitions=None):
+        if competitions:
+            dataset = competitions
+        else:
+            dataset = self.get_all().competitions
+        return self.explicit_search(dataset, query=query, searching_parameter="code")

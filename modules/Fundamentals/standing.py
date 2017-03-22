@@ -1,8 +1,9 @@
 from soccerpy.modules.Fundamentals.links.team_links import TeamLinks
+from soccerpy.modules.Fundamentals.searchable import Searchable
 from collections.abc import Sequence
 
 
-class Standing(Sequence):
+class Standing(Searchable, Sequence):
     def __len__(self):
         return len(self.teams)
 
@@ -10,6 +11,7 @@ class Standing(Sequence):
         return self.teams[index]
 
     def __init__(self, data):
+        super(Standing, self).__init__()
         self.data = data
         self.teams = []
         self.process()
@@ -21,6 +23,16 @@ class Standing(Sequence):
             for team in self.data:
                 # noinspection PyUnresolvedReferences
                 self.teams.append(Team(team))
+
+    def explicit_search(self, teams, query):
+        status = self.finder.search_for_team_from_standing_by_name(teams, query=query)
+        if status:
+            return status
+        return "Not Found"
+
+    def search_by_name(self, query):
+        dataset = self.teams
+        return self.explicit_search(dataset, query=query)
 
 
 class Team:

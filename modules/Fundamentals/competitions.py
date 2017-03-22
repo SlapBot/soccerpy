@@ -1,8 +1,9 @@
 from soccerpy.modules.Competition.competition import Competition as Parent
+from soccerpy.modules.Fundamentals.searchable import Searchable
 from collections.abc import Sequence
 
 
-class Competitions(Sequence):
+class Competitions(Searchable, Sequence):
     def __len__(self):
         return len(self.competitions)
 
@@ -10,6 +11,7 @@ class Competitions(Sequence):
         return self.competitions[index]
 
     def __init__(self, data):
+        super(Competitions, self).__init__()
         self.data = data
         self.competitions = []
         self.process()
@@ -17,6 +19,23 @@ class Competitions(Sequence):
     def process(self):
         for competition in self.data:
             self.competitions.append(Competition(competition))
+
+    def explicit_search(self, competitions, query, searching_parameter="name"):
+        if searching_parameter.lower() == "name":
+            status = self.finder.search_for_competition_by_name(competitions, query=query)
+        else:
+            status = self.finder.search_for_competition_by_code(competitions, query=query)
+        if status:
+            return status
+        return "Not Found"
+
+    def search_by_name(self, query):
+        dataset = self.competitions
+        return self.explicit_search(dataset, query=query, searching_parameter="name")
+
+    def search_by_code(self, query):
+        dataset = self.competitions
+        return self.explicit_search(dataset, query=query, searching_parameter="code")
 
 
 class Competition:
@@ -36,15 +55,15 @@ class Competition:
     def get(self):
         return self.parent.get_specific(self.id)
 
-    def get_teams(self, season=None):
-        return self.parent.get_teams(self.id, season=season)
+    def get_teams(self):
+        return self.parent.get_teams(self.id)
 
-    def get_fixtures(self, matchday=None, time_frame=None, season=None):
+    def get_fixtures(self, matchday=None, time_frame=None):
         return self.parent.get_fixtures(self.id, matchday=matchday,
-                                        time_frame=time_frame, season=season)
+                                        time_frame=time_frame)
 
-    def get_league_table(self, matchday=None, season=None):
-        return self.parent.get_league_table(self.id, matchday=matchday, season=season)
+    def get_league_table(self, matchday=None):
+        return self.parent.get_league_table(self.id, matchday=matchday)
 
 
 class Links:

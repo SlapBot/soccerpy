@@ -1,8 +1,9 @@
 from soccerpy.modules.Team.team import Team as Parent
+from soccerpy.modules.Fundamentals.searchable import Searchable
 from collections.abc import Sequence
 
 
-class Teams(Sequence):
+class Teams(Searchable, Sequence):
     def __len__(self):
         return len(self.teams)
 
@@ -10,6 +11,7 @@ class Teams(Sequence):
         return self.teams[index]
 
     def __init__(self, data):
+        super(Teams, self).__init__()
         self.data = data
         self.teams = []
         self.handle()
@@ -17,6 +19,23 @@ class Teams(Sequence):
     def handle(self):
         for team in self.data:
             self.teams.append(Team(team))
+
+    def explicit_search(self, teams, query, searching_parameter="name"):
+        if searching_parameter.lower() == "name":
+            status = self.finder.search_for_team_by_name(teams, query=query)
+        else:
+            status = self.finder.search_for_team_by_code(teams, query=query)
+        if status:
+            return status
+        return "Not Found"
+
+    def search_by_name(self, query):
+        dataset = self.teams
+        return self.explicit_search(dataset, query=query, searching_parameter="name")
+
+    def search_by_code(self, query):
+        dataset = self.teams
+        return self.explicit_search(dataset, query=query, searching_parameter="code")
 
 
 class Team:

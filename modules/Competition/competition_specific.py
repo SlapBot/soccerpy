@@ -1,7 +1,8 @@
+from soccerpy.modules.Competition.base_competition import BaseCompetition
 from soccerpy.modules.Fundamentals.competitions import Competition
 
 
-class CompetitionSpecific:
-    def __init__(self, data, headers):
-        self.headers = headers
-        self.competition = Competition(data)
+class CompetitionSpecific(BaseCompetition):
+    def __init__(self, data, headers, request):
+        super().__init__(headers, request)
+        self.competition = Competition(data, self.r)

@@ -1,18 +1,18 @@
+from soccerpy.modules.Fundamentals.base_fundamental import BaseFundamental
 from soccerpy.modules.Fundamentals.links.team_links import TeamLinks
-from soccerpy.modules.Fundamentals.searchable import Searchable
 from collections.abc import Sequence
+from soccerpy.modules.Fundamentals.master import Master
 
 
-class Standing(Searchable, Sequence):
+class Standing(BaseFundamental, Sequence):
     def __len__(self):
         return len(self.teams)
 
     def __getitem__(self, index):
         return self.teams[index]
 
-    def __init__(self, data):
-        super(Standing, self).__init__()
-        self.data = data
+    def __init__(self, data, request):
+        super(Standing, self).__init__(data, request)
         self.teams = []
         self.process()
 
@@ -22,7 +22,7 @@ class Standing(Searchable, Sequence):
         else:
             for team in self.data:
                 # noinspection PyUnresolvedReferences
-                self.teams.append(Team(team))
+                self.teams.append(Team(team, self.r))
 
     def explicit_search(self, teams, query):
         status = self.finder.search_for_team_from_standing_by_name(teams, query=query)
@@ -35,9 +35,10 @@ class Standing(Searchable, Sequence):
         return self.explicit_search(dataset, query=query)
 
 
-class Team:
-    def __init__(self, team):
-        self.links = TeamLinks(team['link'])
+class Team(Master):
+    def __init__(self, team, request):
+        super().__init__(request)
+        self.links = TeamLinks(team['link'], self.r)
         self.position = team['position']
         self.team_name = team['teamName']
         self.crest_url = team['crestURI']

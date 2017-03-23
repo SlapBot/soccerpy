@@ -5,19 +5,19 @@ from soccerpy.modules.Team.team_players import TeamPlayers
 
 
 class Team(BaseModule):
-    def __init__(self):
-        super(Team, self).__init__()
+    def __init__(self, API_KEY="", requester=None, response_format='full'):
+        super(Team, self).__init__(API_KEY, requester, response_format=response_format)
 
     def get(self, team_id):
         data, headers = self.r.request("team", endpoint_format=team_id)
-        return TeamSpecific(data, headers)
+        return TeamSpecific(data, headers, self.r)
 
     def get_fixtures(self, team_id, season=None, time_frame=None, venue=None):
         data, headers = self.r.request("team_fixtures", endpoint_format=team_id,
                                        payload={"season": season,
                                                 "timeFrame": time_frame,
                                                 "venue": venue})
-        return TeamFixtures(data, headers)
+        return TeamFixtures(data, headers, self.r)
 
     def get_fixtures_by_season(self, team_id, season):
         return self.get_fixtures(team_id, season=season)
@@ -39,4 +39,4 @@ class Team(BaseModule):
 
     def get_players(self, team_id):
         data, headers = self.r.request("team_players", endpoint_format=team_id)
-        return TeamPlayers(data, headers)
+        return TeamPlayers(data, headers, self.r)

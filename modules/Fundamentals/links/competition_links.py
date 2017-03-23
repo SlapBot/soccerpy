@@ -3,8 +3,8 @@ from soccerpy.modules.Fundamentals.links.base_links import BaseLinks
 
 
 class CompetitionLinks(BaseLinks):
-    def __init__(self, links):
-        super(CompetitionLinks, self).__init__()
+    def __init__(self, links, request):
+        super(CompetitionLinks, self).__init__(request)
         self.url = links['self']['href']
         self.competition = links['competition']['href']
     #

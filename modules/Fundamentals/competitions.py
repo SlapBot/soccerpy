@@ -1,24 +1,23 @@
+from soccerpy.modules.Fundamentals.base_fundamental import BaseFundamental
 from soccerpy.modules.Fundamentals.master import Master
-from soccerpy.modules.Fundamentals.searchable import Searchable
 from collections.abc import Sequence
 
 
-class Competitions(Searchable, Sequence):
+class Competitions(BaseFundamental, Sequence):
     def __len__(self):
         return len(self.competitions)
 
     def __getitem__(self, index):
         return self.competitions[index]
 
-    def __init__(self, data):
-        super(Competitions, self).__init__()
-        self.data = data
+    def __init__(self, data, request):
+        super(Competitions, self).__init__(data, request)
         self.competitions = []
         self.process()
 
     def process(self):
         for competition in self.data:
-            self.competitions.append(Competition(competition))
+            self.competitions.append(Competition(competition, self.r))
 
     def explicit_search(self, competitions, query, searching_parameter="name"):
         if searching_parameter.lower() == "name":
@@ -39,8 +38,8 @@ class Competitions(Searchable, Sequence):
 
 
 class Competition(Master):
-    def __init__(self, competition):
-        super(Competition, self).__init__()
+    def __init__(self, competition, request):
+        super(Competition, self).__init__(request)
         self.links = Links(competition['_links'])
         self.id = competition['id']
         self.caption = competition['caption']
@@ -54,22 +53,22 @@ class Competition(Master):
 
     def get(self):
         data, headers = self.r.request(raw_url=self.links.url)
-        return Competition(data)
+        return Competition(data, self.r)
 
     def teams(self):
         from soccerpy.modules.Team.team_specific import TeamSpecific
         data, headers = self.r.request(raw_url=self.links.teams)
-        return TeamSpecific(data, headers)
+        return TeamSpecific(data, headers, self.r)
 
     def fixtures(self):
         from soccerpy.modules.Fixture.fixtures_all import FixturesAll
         data, headers = self.r.request(raw_url=self.links.fixtures)
-        return FixturesAll(data, headers)
+        return FixturesAll(data, headers, self.r)
 
     def league_table(self):
         from soccerpy.modules.Competition.competition_league_table import CompetitionLeagueTable
         data, headers = self.r.request(raw_url=self.links.league_table)
-        return CompetitionLeagueTable(data, headers)
+        return CompetitionLeagueTable(data, headers, self.r)
 
 
 class Links:

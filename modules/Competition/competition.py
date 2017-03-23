@@ -7,33 +7,33 @@ from soccerpy.modules.base_module import BaseModule
 
 
 class Competition(BaseModule):
-    def __init__(self):
-        super(Competition, self).__init__()
+    def __init__(self, API_KEY="", requester=None, response_format='full'):
+        super(Competition, self).__init__(API_KEY, requester, response_format=response_format)
 
     def get(self, season=None, raw=False):
         data, headers = self.r.request('competitions', payload={"season": season})
         if raw:
             return data
-        return CompetitionsAll(data, headers)
+        return CompetitionsAll(data, headers, self.r)
 
     def get_all(self):
         return self.get()
 
     def get_specific(self, competition_id):
         data, headers = self.r.request('competitions_specific', endpoint_format=competition_id)
-        return CompetitionSpecific(data, headers)
+        return CompetitionSpecific(data, headers, self.r)
 
     def get_by_season(self, season):
         return self.get(season=season)
 
     def get_teams(self, competition_id):
         data, headers = self.r.request('competition_teams', endpoint_format=competition_id)
-        return CompetitionTeams(data, headers)
+        return CompetitionTeams(data, headers, self.r)
 
     def get_league_table(self, competition_id, matchday=None):
         data, headers = self.r.request('competition_league_table', endpoint_format=competition_id,
                                        payload={'matchday': matchday})
-        return CompetitionLeagueTable(data, headers)
+        return CompetitionLeagueTable(data, headers, self.r)
 
     def get_league_table_by_matchday(self, competition_id, matchday):
         return self.get_league_table(competition_id, matchday=matchday)
@@ -42,7 +42,7 @@ class Competition(BaseModule):
         data, headers = self.r.request('competition_fixtures', endpoint_format=competition_id,
                                        payload={'matchday': matchday,
                                                 'timeFrame': time_frame})
-        return CompetitionFixtures(data, headers)
+        return CompetitionFixtures(data, headers, self.r)
 
     def get_fixtures_by_matchday(self, competition_id, matchday):
         return self.get_fixtures(competition_id, matchday=matchday)

@@ -4,7 +4,7 @@ from soccerpy.endpoint_manager import EndpointManager
 
 
 class Requester(EndpointManager):
-    def __init__(self, API_KEY="05d52d8812a548c6a9f6f29ed60e8e00", response_format="full"):
+    def __init__(self, API_KEY="", response_format="full"):
         super().__init__()
         self.API_KEY = API_KEY
         self.response_format = response_format

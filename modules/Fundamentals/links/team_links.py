@@ -3,8 +3,8 @@ from soccerpy.modules.Fundamentals.links.base_links import BaseLinks
 
 
 class TeamLinks(BaseLinks):
-    def __init__(self, links):
-        super(TeamLinks, self).__init__()
+    def __init__(self, links, request):
+        super(TeamLinks, self).__init__(request)
         if "self" in links:
             self.url = links['self']['href']
         self.team = links['team']['href']

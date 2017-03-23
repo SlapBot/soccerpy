@@ -1,3 +1,3 @@
-# from soccerpy.modules import Competition
-# from soccerpy.modules import Fixture
-# from soccerpy.modules import Team
+from soccerpy.modules.Competition.competition import Competition
+from soccerpy.modules.Fixture.fixture import Fixture
+from soccerpy.modules.Team.team import Team

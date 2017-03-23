@@ -1,4 +1,4 @@
-from soccerpy.modules.Competition.competition import Competition as Parent
+from soccerpy.modules.Fundamentals.master import Master
 from soccerpy.modules.Fundamentals.searchable import Searchable
 from collections.abc import Sequence
 
@@ -38,8 +38,9 @@ class Competitions(Searchable, Sequence):
         return self.explicit_search(dataset, query=query, searching_parameter="code")
 
 
-class Competition:
+class Competition(Master):
     def __init__(self, competition):
+        super(Competition, self).__init__()
         self.links = Links(competition['_links'])
         self.id = competition['id']
         self.caption = competition['caption']
@@ -50,20 +51,25 @@ class Competition:
         self.number_of_teams = competition['numberOfTeams']
         self.number_of_games = competition['numberOfGames']
         self.last_updated = competition['lastUpdated']
-        self.parent = Parent()
 
     def get(self):
-        return self.parent.get_specific(self.id)
+        data, headers = self.r.request(raw_url=self.links.url)
+        return Competition(data)
 
-    def get_teams(self):
-        return self.parent.get_teams(self.id)
+    def teams(self):
+        from soccerpy.modules.Team.team_specific import TeamSpecific
+        data, headers = self.r.request(raw_url=self.links.teams)
+        return TeamSpecific(data, headers)
 
-    def get_fixtures(self, matchday=None, time_frame=None):
-        return self.parent.get_fixtures(self.id, matchday=matchday,
-                                        time_frame=time_frame)
+    def fixtures(self):
+        from soccerpy.modules.Fixture.fixtures_all import FixturesAll
+        data, headers = self.r.request(raw_url=self.links.fixtures)
+        return FixturesAll(data, headers)
 
-    def get_league_table(self, matchday=None):
-        return self.parent.get_league_table(self.id, matchday=matchday)
+    def league_table(self):
+        from soccerpy.modules.Competition.competition_league_table import CompetitionLeagueTable
+        data, headers = self.r.request(raw_url=self.links.league_table)
+        return CompetitionLeagueTable(data, headers)
 
 
 class Links:

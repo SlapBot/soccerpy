@@ -1,5 +1,5 @@
 from soccerpy.modules.Fundamentals.links.base_links import BaseLinks
-from soccerpy.modules.Competition.competition_specific import CompetitionSpecific
+# from soccerpy.modules.Competition.competition_specific import CompetitionSpecific
 
 
 class CompetitionLinks(BaseLinks):
@@ -7,7 +7,7 @@ class CompetitionLinks(BaseLinks):
         super(CompetitionLinks, self).__init__()
         self.url = links['self']['href']
         self.competition = links['competition']['href']
-
-    def get_competition(self):
-        data, headers = self.r.request(raw_url=self.competition)
-        return CompetitionSpecific(data, headers)
+    #
+    # def get_competition(self):
+    #     data, headers = self.r.request(raw_url=self.competition)
+    #     return CompetitionSpecific(data, headers)

@@ -1,8 +1,5 @@
 from collections.abc import Sequence
-from soccerpy.modules.Fixture.fixture import Fixture as Parent
 from soccerpy.modules.Fundamentals.master import Master
-from soccerpy.modules.Team.team_specific import TeamSpecific
-from soccerpy.modules.Competition.competition_specific import CompetitionSpecific
 
 
 class Fixtures(Sequence):
@@ -36,20 +33,23 @@ class Fixture(Master):
         if fixture['odds']:
             self.odds = Odds(fixture['odds'])
         self.odds = Odds(fixture['odds'])
-        self.parent = Parent()
 
-    def get(self, head2head):
-        return self.parent.get_specific(self.id, head2head=head2head)
+    def get(self):
+        data, headers = self.r.request(raw_url=self.links.url)
+        return Fixture(data)
 
     def competition(self):
+        from soccerpy.modules.Competition.competition_specific import CompetitionSpecific
         data, headers = self.r.request(raw_url=self.links.competition)
         return CompetitionSpecific(data, headers)
 
     def home_team(self):
+        from soccerpy.modules.Team.team_specific import TeamSpecific
         data, headers = self.r.request(raw_url=self.links.home_team)
         return TeamSpecific(data, headers)
 
     def away_team(self):
+        from soccerpy.modules.Team.team_specific import TeamSpecific
         data, headers = self.r.request(raw_url=self.links.away_team)
         return TeamSpecific(data, headers)
 

@@ -1,4 +1,4 @@
-from soccerpy.modules.Team.team import Team as Parent
+from soccerpy.modules.Fundamentals.master import Master
 from soccerpy.modules.Fundamentals.searchable import Searchable
 from collections.abc import Sequence
 
@@ -38,8 +38,9 @@ class Teams(Searchable, Sequence):
         return self.explicit_search(dataset, query=query, searching_parameter="code")
 
 
-class Team:
+class Team(Master):
     def __init__(self, team):
+        super(Team, self).__init__()
         self.links = TeamLinks(team['_links'])
         self.id = int(self.links.url.split("/")[-1])
         self.name = team['name']
@@ -47,16 +48,20 @@ class Team:
         self.short_name = team['shortName']
         self.squad_market_value = team['squadMarketValue']
         self.crest_url = team['crestUrl']
-        self.parent = Parent()
 
     def get(self):
-        return self.parent.get(self.id)
+        data, headers = self.r.request(raw_url=self.links.url)
+        return Team(data)
 
     def fixtures(self):
-        return self.parent.get_fixtures(self.id, season=None, time_frame=None, venue=None)
+        from soccerpy.modules.Fixture.fixtures_all import FixturesAll
+        data, headers = self.r.request(raw_url=self.links.fixtures)
+        return FixturesAll(data, headers)
 
     def players(self):
-        return self.parent.get_players(self.id)
+        from soccerpy.modules.Team.team_players import TeamPlayers
+        data, headers = self.r.request(raw_url=self.links.players)
+        return TeamPlayers(data, headers)
 
 
 class TeamLinks:

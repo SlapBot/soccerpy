@@ -38,10 +38,10 @@ class Standing(BaseFundamental, Sequence):
 class Team(Master):
     def __init__(self, team, request):
         super().__init__(request)
-        self.links = TeamLinks(team['link'], self.r)
+        self.links = TeamLinks(team['_links'], self.r)
         self.position = team['position']
         self.team_name = team['teamName']
-        self.crest_url = team['crestURI']
+        self.crest_uri = team['crestURI']
         self.played_games = team['playedGames']
         self.points = team['points']
         self.goals = team['goals']
@@ -60,4 +60,4 @@ class Location:
         self.goals_against = location['goalsAgainst']
         self.wins = location['wins']
         self.draws = location['draws']
-        self.loses = location['loses']
+        self.losses = location['losses']

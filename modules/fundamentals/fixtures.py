@@ -33,7 +33,7 @@ class Fixture(Master):
         self.result = Result(fixture['result'])
         if fixture['odds']:
             self.odds = Odds(fixture['odds'])
-        self.odds = Odds(fixture['odds'])
+        self.odds = fixture['odds']
 
     def get(self):
         data, headers = self.r.request(raw_url=self.links.url)
@@ -57,7 +57,7 @@ class Fixture(Master):
 
 class FixtureLinks:
     def __init__(self, links):
-        self.url = links['url']['href']
+        self.url = links['self']['href']
         self.competition = links['competition']['href']
         self.home_team = links['homeTeam']['href']
         self.away_team = links['awayTeam']['href']

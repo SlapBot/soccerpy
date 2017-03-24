@@ -19,12 +19,12 @@ class Competition(BaseModule):
     def get_all(self):
         return self.get()
 
+    def get_by_season(self, season):
+        return self.get(season=season)
+
     def get_specific(self, competition_id):
         data, headers = self.r.request('competitions_specific', endpoint_format=competition_id)
         return CompetitionSpecific(data, headers, self.r)
-
-    def get_by_season(self, season):
-        return self.get(season=season)
 
     def get_teams(self, competition_id):
         data, headers = self.r.request('competition_teams', endpoint_format=competition_id)

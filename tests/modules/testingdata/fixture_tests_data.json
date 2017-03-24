@@ -1,0 +1,67 @@
+{
+  "fixtures_all": {
+    "timeFrameStart": "2017-03-24",
+    "timeFrameEnd": "2017-04-06",
+    "count": 20,
+    "fixtures": [
+      {
+        "_links": {
+          "self": {
+            "href": "http://api.football-data.org/v1/fixtures/150550"
+          },
+          "competition": {
+            "href": "http://api.football-data.org/v1/competitions/426"
+          },
+          "homeTeam": {
+            "href": "http://api.football-data.org/v1/teams/64"
+          },
+          "awayTeam": {
+            "href": "http://api.football-data.org/v1/teams/62"
+          }
+        },
+        "date": "2017-04-01T11:30:00Z",
+        "status": "TIMED",
+        "matchday": 30,
+        "homeTeamName": "Liverpool FC",
+        "awayTeamName": "Everton FC",
+        "result": {
+          "goalsHomeTeam": null,
+          "goalsAwayTeam": null
+        },
+        "odds": null
+      }
+    ]
+  },
+  "fixtures_specific": {
+    "fixture": {
+      "_links": {
+        "self": {
+          "href": "http://api.football-data.org/v1/fixtures/155299"
+        },
+        "competition": {
+          "href": "http://api.football-data.org/v1/competitions/440"
+        },
+        "homeTeam": {
+          "href": "http://api.football-data.org/v1/teams/338"
+        },
+        "awayTeam": {
+          "href": "http://api.football-data.org/v1/teams/559"
+        }
+      },
+      "date": "2017-03-14T19:45:00Z",
+      "status": "FINISHED",
+      "matchday": 7,
+      "homeTeamName": "Leicester City FC",
+      "awayTeamName": "Sevilla FC",
+      "result": {
+        "goalsHomeTeam": 2,
+        "goalsAwayTeam": 0
+      },
+      "odds": {
+        "homeWin": 3.5,
+        "draw": 3.6,
+        "awayWin": 2.1
+      }
+    }
+  }
+}

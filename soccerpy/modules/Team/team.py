@@ -12,6 +12,9 @@ class Team(BaseModule):
         data, headers = self.r.request("team", endpoint_format=team_id)
         return TeamSpecific(data, headers, self.r)
 
+    def get_specific(self, team_id):
+        return self.get(team_id)
+
     def get_fixtures(self, team_id, season=None, time_frame=None, venue=None):
         data, headers = self.r.request("team_fixtures", endpoint_format=team_id,
                                        payload={"season": season,

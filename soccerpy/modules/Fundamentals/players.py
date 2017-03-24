@@ -36,7 +36,7 @@ class Player(Master):
         self.name = player['name']
         self.position = player['position']
         self.jersey_number = player['jerseyNumber']
-        self.dateOfBirth = player['dateOfBirth']
+        self.date_of_birth = player['dateOfBirth']
         self.nationality = player['nationality']
         self.contract_until = player['contractUntil']
         self.market_value = player['marketValue']

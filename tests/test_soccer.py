@@ -1,6 +1,4 @@
 import unittest
-from unittest import TestCase
-
 from soccerpy.soccer import Soccer
 
 

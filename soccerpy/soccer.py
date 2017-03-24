@@ -7,7 +7,7 @@ class Soccer(Base):
         super(Soccer, self).__init__(API_KEY, response_format)
         self.competition = Competition(requester=self.requester)
         self.fixture = Fixture(requester=self.requester)
-        self.Team = Team(requester=self.requester)
+        self.team = Team(requester=self.requester)
 
 
 if __name__ == "__main__":

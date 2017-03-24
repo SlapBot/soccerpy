@@ -1,0 +1,74 @@
+{
+  "team_fixtures": {
+    "_links": {},
+    "count": 22,
+    "fixtures": [
+      {
+        "_links": {
+          "self": {
+            "href": "http://api.football-data.org/v1/fixtures/147075"
+          },
+          "competition": {
+            "href": "http://api.football-data.org/v1/competitions/398"
+          },
+          "homeTeam": {
+            "href": "http://api.football-data.org/v1/teams/66"
+          },
+          "awayTeam": {
+            "href": "http://api.football-data.org/v1/teams/73"
+          }
+        },
+        "date": "2015-08-08T11:45:00Z",
+        "status": "FINISHED",
+        "matchday": 1,
+        "homeTeamName": "Manchester United FC",
+        "awayTeamName": "Tottenham Hotspur FC",
+        "result": {
+          "goalsHomeTeam": 1,
+          "goalsAwayTeam": 0
+        },
+        "odds": null
+      }
+    ]
+  },
+  "team_specific": {
+    "_links": {
+      "self": {
+        "href": "http://api.football-data.org/v1/teams/66"
+      },
+      "fixtures": {
+        "href": "http://api.football-data.org/v1/teams/66/fixtures"
+      },
+      "players": {
+        "href": "http://api.football-data.org/v1/teams/66/players"
+      }
+    },
+    "name": "Manchester United FC",
+    "code": "MUFC",
+    "shortName": "ManU",
+    "squadMarketValue": "534,250,000 €",
+    "crestUrl": "http://upload.wikimedia.org/wikipedia/de/d/da/Manchester_United_FC.svg"
+  },
+  "team_players": {
+    "_links": {
+      "self": {
+        "href": "http://api.football-data.org/v1/teams/66/players"
+      },
+      "team": {
+        "href": "http://api.football-data.org/v1/teams/66"
+      }
+    },
+    "count": 27,
+    "players": [
+      {
+        "name": "Paul Pogba",
+        "position": "Central Midfield",
+        "jerseyNumber": 6,
+        "dateOfBirth": "1993-03-15",
+        "nationality": "France",
+        "contractUntil": "2021-06-30",
+        "marketValue": "70,000,000 €"
+      }
+    ]
+  }
+}

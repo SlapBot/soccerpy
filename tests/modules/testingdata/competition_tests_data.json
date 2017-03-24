@@ -1,0 +1,161 @@
+{
+  "competitions_all": {
+    "_links": {
+      "self": {
+        "href": "http://api.football-data.org/v1/competitions/394"
+      },
+      "teams": {
+        "href": "http://api.football-data.org/v1/competitions/394/teams"
+      },
+      "fixtures": {
+        "href": "http://api.football-data.org/v1/competitions/394/fixtures"
+      },
+      "leagueTable": {
+        "href": "http://api.football-data.org/v1/competitions/394/leagueTable"
+      }
+    },
+    "id": 394,
+    "caption": "1. Bundesliga 2015/16",
+    "league": "BL1",
+    "year": "2015",
+    "currentMatchday": 34,
+    "numberOfMatchdays": 34,
+    "numberOfTeams": 18,
+    "numberOfGames": 306,
+    "lastUpdated": "2016-06-15T08:09:51Z"
+  },
+  "competition_specific": {
+    "_links": {
+      "self": {
+        "href": "http://api.football-data.org/v1/competitions/398"
+      },
+      "teams": {
+        "href": "http://api.football-data.org/v1/competitions/398/teams"
+      },
+      "fixtures": {
+        "href": "http://api.football-data.org/v1/competitions/398/fixtures"
+      },
+      "leagueTable": {
+        "href": "http://api.football-data.org/v1/competitions/398/leagueTable"
+      }
+    },
+    "id": 398,
+    "caption": "Premier League 2015/16",
+    "league": "PL",
+    "year": "2015",
+    "currentMatchday": 38,
+    "numberOfMatchdays": 38,
+    "numberOfTeams": 20,
+    "numberOfGames": 380,
+    "lastUpdated": "2016-05-19T15:12:55Z"
+  },
+  "competition_teams": {
+    "_links": {
+      "self": {
+        "href": "http://api.football-data.org/v1/competitions/398/teams"
+      },
+      "competition": {
+        "href": "http://api.football-data.org/v1/competitions/398"
+      }
+    },
+    "count": 20,
+    "teams": [
+      {
+        "_links": {
+          "self": {
+            "href": "http://api.football-data.org/v1/teams/66"
+          },
+          "fixtures": {
+            "href": "http://api.football-data.org/v1/teams/66/fixtures"
+          },
+          "players": {
+            "href": "http://api.football-data.org/v1/teams/66/players"
+          }
+        },
+        "name": "Manchester United FC",
+        "code": "MUFC",
+        "shortName": "ManU",
+        "squadMarketValue": "534,250,000 €",
+        "crestUrl": "http://upload.wikimedia.org/wikipedia/de/d/da/Manchester_United_FC.svg"
+      }
+    ]
+  },
+  "competition_league_table": {
+    "_links": {
+      "self": {
+        "href": "http://api.football-data.org/v1/competitions/398/leagueTable/?matchday=28"
+      },
+      "competition": {
+        "href": "http://api.football-data.org/v1/competitions/398"
+      }
+    },
+    "leagueCaption": "Premier League 2015/16",
+    "matchday": 28,
+    "standing": [
+      {
+        "_links": {
+          "team": {
+            "href": "http://api.football-data.org/v1/teams/338"
+          }
+        },
+        "position": 1,
+        "teamName": "Leicester City FC",
+        "crestURI": "http://upload.wikimedia.org/wikipedia/en/6/63/Leicester02.png",
+        "playedGames": 28,
+        "points": 57,
+        "goals": 51,
+        "goalsAgainst": 31,
+        "goalDifference": 20,
+        "wins": 16,
+        "draws": 9,
+        "losses": 3,
+        "home": {
+          "goals": 24,
+          "goalsAgainst": 15,
+          "wins": 8,
+          "draws": 5,
+          "losses": 1
+        }
+      }
+    ]
+  },
+  "competition_fixtures": {
+    "_links": {
+      "self": {
+        "href": "http://api.football-data.org/v1/competitions/398/fixtures"
+      },
+      "competition": {
+        "href": "http://api.football-data.org/v1/competitions/398"
+      }
+    },
+    "count": 10,
+    "fixtures": [
+      {
+        "_links": {
+          "self": {
+            "href": "http://api.football-data.org/v1/fixtures/147090"
+          },
+          "competition": {
+            "href": "http://api.football-data.org/v1/competitions/398"
+          },
+          "homeTeam": {
+            "href": "http://api.football-data.org/v1/teams/1044"
+          },
+          "awayTeam": {
+            "href": "http://api.football-data.org/v1/teams/340"
+          }
+        },
+        "date": "2016-03-01T19:45:00Z",
+        "status": "FINISHED",
+        "matchday": 28,
+        "homeTeamName": "AFC Bournemouth",
+        "awayTeamName": "Southampton FC",
+        "result": {
+          "goalsHomeTeam": 2,
+          "goalsAwayTeam": 0
+        },
+        "odds": null
+      }
+    ]
+  }
+}

@@ -12,7 +12,7 @@ class Requester(EndpointManager):
                         'X-Response-Control': self.response_format}
         self.r = object
 
-    def request(self, endpoint_name, endpoint_format=False, payload=None, raw=False, raw_url=None):
+    def request(self, endpoint_name=None, endpoint_format=False, payload=None, raw=False, raw_url=None):
         if payload is None:
             payload = {}
         if endpoint_format:

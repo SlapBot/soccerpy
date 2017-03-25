@@ -1,6 +1,8 @@
 import unittest
 from soccerpy.soccer import Soccer
 
+"""Real tests are written at modules sub package, this is just to let know everyone is in place."""
+
 
 class TestSoccer(unittest.TestCase):
     @staticmethod
@@ -32,10 +34,12 @@ class TestSoccer(unittest.TestCase):
         self.assertEqual(len(comp.teams), 20)
         self.assertEqual(comp.teams[0].code, "HUL")
         self.assertEqual(comp.teams[0].short_name, "Hull")
-    #
-    # def test_get_league_table_competition(self):
-    #     s = self.do_init()
-    #     league_table = s.competition.get_league_table(424)
-    #     self.assertEqual()
+        #
+        # def test_get_league_table_competition(self):
+        #     s = self.do_init()
+        #     league_table = s.competition.get_league_table(424)
+        #     self.assertEqual()
+
+
 if __name__ == "__main__":
     unittest.main()

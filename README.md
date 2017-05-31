@@ -8,5 +8,5 @@ Using ``pip``:
 
 ::
 
-	pip install newsapi
+	pip install soccerpy
 
